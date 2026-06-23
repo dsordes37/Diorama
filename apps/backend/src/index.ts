@@ -1,12 +1,13 @@
 import cors from "cors";
-import "dotenv/config";
 import express from "express";
+import { PORT } from "./config/enviroments.js";
+import { runBackupJob } from "./jobs/backup-job.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3001;
+runBackupJob();
 
 // Rota base de teste
 app.get("/api/v1", async (_req, res) => {
